@@ -26,7 +26,7 @@ jobs:
 
       with:
 
-        host: ${{ secrets.EC2_HOST }}
+        host: ${{ secrets.DARSHAN }}
 
         username: ubuntu
 
