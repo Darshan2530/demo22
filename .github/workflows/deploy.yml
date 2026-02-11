@@ -37,6 +37,8 @@ jobs:
           git clone https://github.com/Darshan2530/demo22.git app || (cd app && git pull origin main)
           cd app
           sudo docker build -t my-app .
+          sudo docker stop devops-site || true
+          sudo docker rm devops-site || true
           sudo docker stop my-app-container || true
           sudo docker rm my-app-container || true
           sudo docker run -d --name my-app-container -p 80:80 my-app
