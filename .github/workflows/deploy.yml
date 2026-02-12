@@ -32,6 +32,8 @@ jobs:
 
         key: ${{ secrets.EC2_SSH_KEY }}
 
+        debug: true
+
         script: |
           cd /home/ubuntu
           git clone https://github.com/Darshan2530/demo22.git app || (cd app && git pull origin main)
