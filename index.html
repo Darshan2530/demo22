@@ -1,45 +1,88 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Number Guessing Game</title>
+  <meta charset="UTF-8">
+  <title>Tic Tac Toe</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      text-align: left;
-      margin-top: 50px;
+      text-align: center;
+      background: #f4f4f4;
     }
-    input {
-      padding: 5px;
-      margin: 10px;
+    h1 {
+      margin-bottom: 20px;
     }
-    button {
-      padding: 5px 10px;
+    #board {
+      display: grid;
+      grid-template-columns: repeat(3, 100px);
+      grid-gap: 5px;
+      justify-content: center;
+      margin: 20px auto;
+    }
+    .cell {
+      width: 100px;
+      height: 100px;
+      background: white;
+      border: 2px solid #333;
+      font-size: 2em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+    #message {
+      margin-top: 20px;
+      font-size: 1.2em;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
-    <h1>Welcome</h1>
-  <h1>Guess the Number!</h1>
-  <p>I'm thinking of a number between 1 and 10.</p>
-  
-  <input type="number" id="guess" min="1" max="10" />
-  <button onclick="checkGuess()">Guess</button>
-  
-  <p id="result"></p>
-  
+  <h1>Tic Tac Toe</h1>
+  <div id="board"></div>
+  <div id="message"></div>
+
   <script>
-    // Generate random number between 1 and 10
-    let secretNumber = Math.floor(Math.random() * 10) + 1;
+    const board = document.getElementById("board");
+    const message = document.getElementById("message");
+    let currentPlayer = "X";
+    let cells = Array(9).fill(null);
 
-    function checkGuess() {
-      let userGuess = document.getElementById("guess").value;
-      let result = document.getElementById("result");
+    // Create cells
+    for (let i = 0; i < 9; i++) {
+      const cell = document.createElement("div");
+      cell.classList.add("cell");
+      cell.dataset.index = i;
+      cell.addEventListener("click", handleClick);
+      board.appendChild(cell);
+    }
 
-      if (userGuess == secretNumber) {
-        result.textContent = "🎉 Correct! You guessed it!";
-      } else {
-        result.textContent = "❌ Wrong guess. Try again!";
+    function handleClick(e) {
+      const index = e.target.dataset.index;
+      if (!cells[index]) {
+        cells[index] = currentPlayer;
+        e.target.textContent = currentPlayer;
+        if (checkWinner()) {
+          message.textContent = currentPlayer + " Wins!";
+          board.querySelectorAll(".cell").forEach(c => c.removeEventListener("click", handleClick));
+        } else if (cells.every(cell => cell)) {
+          message.textContent = "It's a Draw!";
+        } else {
+          currentPlayer = currentPlayer === "X" ? "O" : "X";
+        }
       }
+    }
+
+    function checkWinner() {
+      const winPatterns = [
+        [0,1,2],[3,4,5],[6,7,8], // rows
+        [0,3,6],[1,4,7],[2,5,8], // columns
+        [0,4,8],[2,4,6]          // diagonals
+      ];
+      return winPatterns.some(pattern => {
+        const [a,b,c] = pattern;
+        return cells[a] && cells[a] === cells[b] && cells[a] === cells[c];
+      });
     }
   </script>
 </body>
