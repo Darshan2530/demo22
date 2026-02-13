@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Form - Event Registration</title>
+    <meta name="description" content="A Google Form style event registration form built with HTML, CSS and JavaScript">
+    <link rel="stylesheet" href="style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Roboto:wght@300;400;500&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="form-container">
+        <!-- Header Banner -->
+        <div class="form-header">
+            <div class="header-color-bar"></div>
+            <div class="header-content">
+                <h1 class="form-title">Event Registration Form</h1>
+                <p class="form-description">Please fill out the form below to register for our upcoming event. Fields
+                    marked with <span class="required-star">*</span> are required.</p>
+            </div>
+        </div>
+
+        <!-- Email Notice -->
+        <div class="form-card email-notice">
+            <span class="email-text">youremail@gmail.com</span>
+            <a href="#" class="switch-account">Switch account</a>
+        </div>
+
+        <!-- Form -->
+        <form id="registrationForm" novalidate>
+            <!-- Full Name -->
+            <div class="form-card">
+                <label class="question-label">
+                    Full Name <span class="required-star">*</span>
+                </label>
+                <div class="input-wrapper">
+                    <input type="text" id="fullName" class="text-input" placeholder="Your answer" required>
+                    <div class="input-underline"></div>
+                </div>
+                <span class="error-message" id="fullNameError">This is a required question</span>
+            </div>
+
+            <!-- Email -->
+            <div class="form-card">
+                <label class="question-label">
+                    Email Address <span class="required-star">*</span>
+                </label>
+                <div class="input-wrapper">
+                    <input type="email" id="email" class="text-input" placeholder="Your answer" required>
+                    <div class="input-underline"></div>
+                </div>
+                <span class="error-message" id="emailError">Please enter a valid email address</span>
+            </div>
+
+            <!-- Phone -->
+            <div class="form-card">
+                <label class="question-label">
+                    Phone Number
+                </label>
+                <div class="input-wrapper">
+                    <input type="tel" id="phone" class="text-input" placeholder="Your answer">
+                    <div class="input-underline"></div>
+                </div>
+            </div>
+
+            <!-- Event Selection - Radio -->
+            <div class="form-card">
+                <label class="question-label">
+                    Which event would you like to attend? <span class="required-star">*</span>
+                </label>
+                <div class="radio-group" id="eventGroup">
+                    <label class="radio-option">
+                        <input type="radio" name="event" value="workshop">
+                        <span class="radio-custom"></span>
+                        <span class="radio-label">Workshop - Web Development</span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="event" value="seminar">
+                        <span class="radio-custom"></span>
+                        <span class="radio-label">Seminar - AI & Machine Learning</span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="event" value="hackathon">
+                        <span class="radio-custom"></span>
+                        <span class="radio-label">Hackathon - Code Sprint</span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="event" value="conference">
+                        <span class="radio-custom"></span>
+                        <span class="radio-label">Conference - Tech Summit 2026</span>
+                    </label>
+                    <label class="radio-option other-option">
+                        <input type="radio" name="event" value="other">
+                        <span class="radio-custom"></span>
+                        <span class="radio-label">Other:</span>
+                        <input type="text" class="other-input" id="eventOther" placeholder="" disabled>
+                    </label>
+                </div>
+                <span class="error-message" id="eventError">This is a required question</span>
+            </div>
+
+            <!-- Experience Level - Dropdown -->
+            <div class="form-card">
+                <label class="question-label">
+                    Experience Level <span class="required-star">*</span>
+                </label>
+                <div class="select-wrapper">
+                    <select id="experience" class="select-input" required>
+                        <option value="" disabled selected>Choose</option>
+                        <option value="beginner">Beginner</option>
+                        <option value="intermediate">Intermediate</option>
+                        <option value="advanced">Advanced</option>
+                        <option value="expert">Expert</option>
+                    </select>
+                    <span class="select-arrow">&#9662;</span>
+                </div>
+                <span class="error-message" id="experienceError">This is a required question</span>
+            </div>
+
+            <!-- Interests - Checkboxes -->
+            <div class="form-card">
+                <label class="question-label">
+                    Areas of Interest
+                </label>
+                <div class="checkbox-group">
+                    <label class="checkbox-option">
+                        <input type="checkbox" name="interests" value="frontend">
+                        <span class="checkbox-custom"></span>
+                        <span class="checkbox-label">Frontend Development</span>
+                    </label>
+                    <label class="checkbox-option">
+                        <input type="checkbox" name="interests" value="backend">
+                        <span class="checkbox-custom"></span>
+                        <span class="checkbox-label">Backend Development</span>
+                    </label>
+                    <label class="checkbox-option">
+                        <input type="checkbox" name="interests" value="mobile">
+                        <span class="checkbox-custom"></span>
+                        <span class="checkbox-label">Mobile App Development</span>
+                    </label>
+                    <label class="checkbox-option">
+                        <input type="checkbox" name="interests" value="data">
+                        <span class="checkbox-custom"></span>
+                        <span class="checkbox-label">Data Science</span>
+                    </label>
+                    <label class="checkbox-option">
+                        <input type="checkbox" name="interests" value="cloud">
+                        <span class="checkbox-custom"></span>
+                        <span class="checkbox-label">Cloud Computing</span>
+                    </label>
+                    <label class="checkbox-option">
+                        <input type="checkbox" name="interests" value="cybersecurity">
+                        <span class="checkbox-custom"></span>
+                        <span class="checkbox-label">Cybersecurity</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Date -->
+            <div class="form-card">
+                <label class="question-label">
+                    Preferred Date <span class="required-star">*</span>
+                </label>
+                <div class="input-wrapper date-wrapper">
+                    <input type="date" id="preferredDate" class="text-input date-input" required>
+                    <div class="input-underline"></div>
+                </div>
+                <span class="error-message" id="dateError">This is a required question</span>
+            </div>
+
+            <!-- Additional Comments - Textarea -->
+            <div class="form-card">
+                <label class="question-label">
+                    Additional Comments or Questions
+                </label>
+                <div class="input-wrapper">
+                    <textarea id="comments" class="text-input textarea-input" placeholder="Your answer"
+                        rows="1"></textarea>
+                    <div class="input-underline"></div>
+                </div>
+            </div>
+
+            <!-- Terms - Linear Scale -->
+            <div class="form-card">
+                <label class="question-label">
+                    How did you hear about this event? <span class="required-star">*</span>
+                </label>
+                <div class="radio-group" id="sourceGroup">
+                    <label class="radio-option">
+                        <input type="radio" name="source" value="social_media">
+                        <span class="radio-custom"></span>
+                        <span class="radio-label">Social Media</span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="source" value="email">
+                        <span class="radio-custom"></span>
+                        <span class="radio-label">Email Newsletter</span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="source" value="friend">
+                        <span class="radio-custom"></span>
+                        <span class="radio-label">Friend / Colleague</span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="source" value="website">
+                        <span class="radio-custom"></span>
+                        <span class="radio-label">Website</span>
+                    </label>
+                    <label class="radio-option other-option">
+                        <input type="radio" name="source" value="other">
+                        <span class="radio-custom"></span>
+                        <span class="radio-label">Other:</span>
+                        <input type="text" class="other-input" id="sourceOther" placeholder="" disabled>
+                    </label>
+                </div>
+                <span class="error-message" id="sourceError">This is a required question</span>
+            </div>
+
+            <!-- Buttons -->
+            <div class="form-actions">
+                <button type="submit" class="btn-submit" id="submitBtn">Submit</button>
+                <button type="button" class="btn-clear" id="clearBtn">Clear form</button>
+            </div>
+        </form>
+
+        <!-- Footer -->
+        <div class="form-footer">
+            <p>Never submit passwords through Google Forms.</p>
+            <div class="footer-links">
+                <a href="#">Report Abuse</a>
+                <span class="footer-separator">-</span>
+                <a href="#">Terms of Service</a>
+                <span class="footer-separator">-</span>
+                <a href="#">Privacy Policy</a>
+            </div>
+            <p class="google-branding">This content is neither created nor endorsed by Google. <a href="#">Report
+                    Abuse</a> - <a href="#">Terms of Service</a> - <a href="#">Privacy Policy</a></p>
+            <div class="google-forms-logo">
+                <span class="logo-text">Google</span> Forms
+            </div>
+        </div>
+
+        <!-- Success Modal -->
+        <div class="modal-overlay" id="successModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="header-color-bar"></div>
+                    <div class="header-content">
+                        <h1 class="form-title">Event Registration Form</h1>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div class="success-icon">
+                        <svg viewBox="0 0 24 24" width="64" height="64">
+                            <circle cx="12" cy="12" r="11" fill="#673ab7" opacity="0.1" />
+                            <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z" fill="#673ab7" />
+                        </svg>
+                    </div>
+                    <h2 class="success-title">Your response has been recorded.</h2>
+                    <p class="success-message">Thank you for registering! We'll get back to you soon.</p>
+                    <a href="#" class="submit-another" id="submitAnother">Submit another response</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

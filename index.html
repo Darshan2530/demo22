@@ -1,89 +1,204 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Tic Tac Toe</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      background: #f4f4f4;
-    }
-    h1 {
-      margin-bottom: 20px;
-    }
-    #board {
-      display: grid;
-      grid-template-columns: repeat(3, 100px);
-      grid-gap: 5px;
-      justify-content: center;
-      margin: 20px auto;
-    }
-    .cell {
-      width: 100px;
-      height: 100px;
-      background: white;
-      border: 2px solid #333;
-      font-size: 2em;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-    }
-    #message {
-      margin-top: 20px;
-      font-size: 1.2em;
-      font-weight: bold;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>MyShop – E-Commerce</title>
+
+<style>
+/* ---------- CSS ---------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #f4f4f4;
+}
+
+/* HEADER */
+header {
+    background: #222;
+    color: #fff;
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header nav a {
+    color: #fff;
+    margin-left: 20px;
+    text-decoration: none;
+}
+
+.cart-count {
+    background: orange;
+    padding: 3px 8px;
+    border-radius: 50%;
+    font-size: 14px;
+}
+
+/* HERO */
+.hero {
+    background: #ff9800;
+    color: #fff;
+    text-align: center;
+    padding: 60px 20px;
+}
+
+/* PRODUCTS */
+.products {
+    padding: 40px;
+}
+
+.products h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.product-grid {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.product-card {
+    background: #fff;
+    padding: 20px;
+    width: 220px;
+    text-align: center;
+    border-radius: 6px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.product-card img {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.product-card button {
+    margin-top: 10px;
+    padding: 8px 15px;
+    background: #ff9800;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+}
+
+.product-card button:hover {
+    background: #e68900;
+}
+
+/* CART */
+.cart {
+    background: #fff;
+    padding: 30px;
+    margin: 40px;
+    border-radius: 6px;
+}
+
+.cart h2 {
+    margin-bottom: 15px;
+}
+
+.cart ul {
+    list-style: none;
+}
+
+.cart li {
+    margin-bottom: 8px;
+}
+
+/* FOOTER */
+footer {
+    background: #222;
+    color: #fff;
+    text-align: center;
+    padding: 15px;
+    margin-top: 40px;
+}
+</style>
 </head>
+
 <body>
-  <h1>Tic Tac Toe</h1>
-  <div id="board"></div>
-  <div id="message"></div>
 
-  <script>
-    const board = document.getElementById("board");
-    const message = document.getElementById("message");
-    let currentPlayer = "X";
-    let cells = Array(9).fill(null);
+<!-- HEADER -->
+<header>
+    <h1>MyShop</h1>
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">Products</a>
+        <a href="#">Cart <span class="cart-count" id="cartCount">0</span></a>
+    </nav>
+</header>
 
-    // Create cells
-    for (let i = 0; i < 9; i++) {
-      const cell = document.createElement("div");
-      cell.classList.add("cell");
-      cell.dataset.index = i;
-      cell.addEventListener("click", handleClick);
-      board.appendChild(cell);
-    }
+<!-- HERO -->
+<section class="hero">
+    <h2>Welcome to MyShop</h2>
+    <p>Simple E-Commerce Website</p>
+</section>
 
-    function handleClick(e) {
-      const index = e.target.dataset.index;
-      if (!cells[index]) {
-        cells[index] = currentPlayer;
-        e.target.textContent = currentPlayer;
-        if (checkWinner()) {
-          message.textContent = currentPlayer + " Wins!";
-          board.querySelectorAll(".cell").forEach(c => c.removeEventListener("click", handleClick));
-        } else if (cells.every(cell => cell)) {
-          message.textContent = "It's a Draw!";
-        } else {
-          currentPlayer = currentPlayer === "X" ? "O" : "X";
-        }
-      }
-    }
+<!-- PRODUCTS -->
+<section class="products">
+    <h2>Products</h2>
 
-    function checkWinner() {
-      const winPatterns = [
-        [0,1,2],[3,4,5],[6,7,8], // rows
-        [0,3,6],[1,4,7],[2,5,8], // columns
-        [0,4,8],[2,4,6]          // diagonals
-      ];
-      return winPatterns.some(pattern => {
-        const [a,b,c] = pattern;
-        return cells[a] && cells[a] === cells[b] && cells[a] === cells[c];
-      });
-    }
-  </script>
+    <div class="product-grid">
+        <div class="product-card">
+            <img src="https://via.placeholder.com/200">
+            <h3>Smart Watch</h3>
+            <p>₹1999</p>
+            <button onclick="addToCart('Smart Watch')">Add to Cart</button>
+        </div>
+
+        <div class="product-card">
+            <img src="https://via.placeholder.com/200">
+            <h3>Headphones</h3>
+            <p>₹1499</p>
+            <button onclick="addToCart('Headphones')">Add to Cart</button>
+        </div>
+
+        <div class="product-card">
+            <img src="https://via.placeholder.com/200">
+            <h3>Mobile Phone</h3>
+            <p>₹9999</p>
+            <button onclick="addToCart('Mobile Phone')">Add to Cart</button>
+        </div>
+    </div>
+</section>
+
+<!-- CART -->
+<section class="cart">
+    <h2>Your Cart</h2>
+    <ul id="cartItems"></ul>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <p>© 2026 MyShop</p>
+</footer>
+
+<!-- ---------- JAVASCRIPT ---------- -->
+<script>
+let cart = [];
+
+function addToCart(product) {
+    cart.push(product);
+
+    document.getElementById("cartCount").innerText = cart.length;
+
+    let cartList = document.getElementById("cartItems");
+    cartList.innerHTML = "";
+
+    cart.forEach((item, index) => {
+        let li = document.createElement("li");
+        li.textContent = (index + 1) + ". " + item;
+        cartList.appendChild(li);
+    });
+}
+</script>
+
 </body>
 </html>
